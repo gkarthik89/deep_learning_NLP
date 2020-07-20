@@ -21,11 +21,6 @@ def load_labels():
         encoded_labels = pickle.load(handle)
     return encoded_labels
 
-
-def write_to_table(dataframe):
-    write_to_table(dataframe, 'predictions')
-
-
 def main():
     """
     Function to predict.
@@ -47,7 +42,7 @@ def main():
     dataframe['predicted'] = dataframe['notes'].apply(
         lambda x: model.predict_classes(tokenizer.texts_to_matrix([x])).tolist())
     # Convert to labels.
-    dataframe['subqueueName'] = dataframe['predicted'].apply(lambda x: encoder.inverse_transform(x)[0])
+    dataframe['CategoryName'] = dataframe['predicted'].apply(lambda x: encoder.inverse_transform(x)[0])
 
     return dataframe
 
