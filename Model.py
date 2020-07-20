@@ -75,7 +75,7 @@ def main():
     """
     dataframe = load_data()
     dataframe['Notes'] = dataframe['Notes'].apply(lambda x: text_cleaner(x))
-    train_posts, test_posts, train_tags, test_tags = create_training_dataset(dataframe.Notes, dataframe.QueueName)
+    train_posts, test_posts, train_tags, test_tags = create_training_dataset(dataframe.Notes, dataframe.LabelName)
     x_train, x_test, word_index = tokenizer(train_posts, test_posts, max_words=MAX_WORDS)
     y_train, y_test, num_classes = label_encoder(train_tags, test_tags)
     model = create_model(MAX_WORDS, num_classes, NUMBER_NODES, DROPOUT, LOSS, OPTIMIZER, METRICS)
